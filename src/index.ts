@@ -8,6 +8,8 @@ import authRoutes from "./routes/authRoutes.js";
 import jobRoutes from "./routes/jobRoutes.js";
 import applicationRoutes from "./routes/applicationRoutes.js";
 import companyRoutes from "./routes/companyRoutes.js";
+import messageRoutes from "./routes/messageRoutes.js";
+import analyticsRoutes from "./routes/analyticsRoutes.js";
 import credentials from "./middleware/credentials.js";
 import corsOprtions from "./config/corsOptions.js";
 
@@ -25,6 +27,8 @@ app.use("/api/auth", authRoutes);
 app.use("/api/jobs", jobRoutes);
 app.use("/api/applications", applicationRoutes);
 app.use("/api/company", companyRoutes);
+app.use("/api/messages", messageRoutes);
+app.use("/api/analytics", analyticsRoutes);
 
 const start = async (): Promise<void> => {
   try {
