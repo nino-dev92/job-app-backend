@@ -66,6 +66,21 @@ export const getJobs = async (req: Request, res: Response) => {
   }
 };
 
+// Get employer's jobs only
+export const getEmployerJobs = async (req: Request, res: Response) => {
+  try {
+    const employerId = (req as any).user.id;
+
+    const jobs = await Job.find({ createdBy: employerId })
+      .populate("company", "name")
+      .sort({ createdAt: -1 });
+
+    res.json({ jobs });
+  } catch (error: any) {
+    res.status(500).json({ message: error.message });
+  }
+};
+
 // Get single job
 export const getJobById = async (req: Request, res: Response) => {
   try {

@@ -9,10 +9,17 @@ import {
   getJobById,
   updateJob,
   deleteJob,
+  getEmployerJobs,
 } from "../controllers/jobController.js";
 import upload from "../middleware/upload.js";
 
 router.get("/", getJobs);
+router.get(
+  "/employer/jobs",
+  verifyJWT,
+  requireRole("employer"),
+  getEmployerJobs,
+);
 router.get("/:id", getJobById);
 
 router.post("/create", verifyJWT, requireRole("employer"), createJob);

@@ -47,7 +47,7 @@ export const getMyApplications = async (req: Request, res: Response) => {
     const applications = await Application.find({
       user: userId,
     })
-      .populate("job", "title company location salary")
+      .populate("job", "title company location salary createdBy")
       .sort({ createdAt: -1 });
 
     res.json(applications);
